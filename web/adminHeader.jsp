@@ -1,4 +1,4 @@
-eq not<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -11,7 +11,8 @@ eq not<%@ page language="java" contentType="text/html; charset=UTF-8"
 	
 	<header>
 	<h1>first web application</h1>
-	<nav>
+	<nav>p
+	
 	<ul>
 	
 	<li><a href="/first/index.jsp">home</a></li>

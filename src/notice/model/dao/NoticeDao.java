@@ -22,7 +22,7 @@ public class NoticeDao {
 				+ "from (select * from notice "
 				+ "order by noticedate desc)) " 
 				+ "where rnum >= 1 and rnum <= 3";	
-		
+
 		try {
 			stmt = con.createStatement();
 			rset = stmt.executeQuery(query);
@@ -140,6 +140,8 @@ public class NoticeDao {
 		}		
 		return result;
 	}
+	
+	
 	
 	public int updateNotice(Connection con, Notice notice) {
 		

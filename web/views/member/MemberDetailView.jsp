@@ -117,11 +117,6 @@ $(function(){
 					<input type="radio" name="gender" value="F" checked>여
 				</c:if>	
 					
-				
-		
-
-
-
 				</td>
 			</tr>
 			
