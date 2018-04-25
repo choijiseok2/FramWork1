@@ -45,7 +45,10 @@ public class LoginServlet extends HttpServlet {
         
         //3. 비즈니스 로직을 처리할 서비스 모델 클래스의
         //로그인 처리용 메소드로 값을 전달하고, 결과를 받음.
-        Member loginUser = new MemberService().loginCheck(userId, userPwd);
+        Member m = new Member();
+        m.setUserId(request.getParameter("userid"));
+        m.setUserPwd(request.getParameter("userpwd"));
+        Member loginUser = new MemberService().loginCheck(m);
         
         //4. 받은 결과를 가지고 성공/ 실패에 따라 뷰를 선택해서 내보냄
         response.setContentType("text/html; charset=utf-8");

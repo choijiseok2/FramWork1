@@ -5,7 +5,6 @@
 <mapper namespace="member">
 
 	<resultMap id="resultMember" type="Member">
-	
 	<id property="userId" column="userId" />
 		<result property="userPwd" column="userPwd" />
 		<result property="userName" column="userName" />
@@ -33,11 +32,10 @@
 		<result property="lastModified" column="lastModified" />
 	</resultMap>
 	
-	<select id="loginMember" parameterType="Member" resultType="resultMember">
+	<select id="loginMember" resultMap="resultMember">
 		select * from member 
 			where userid= #{userId} 
 			and userpwd = #{userPwd}
-			
 	</select>
 	
 
@@ -49,7 +47,7 @@
 	<select id="selectList">select * from member</select>
 	<select id="selectCheckId">select count(userid) from member where userid = #{userId}</select>
 	
-	<insert id="insertMember">
+	<insert id="insertMember" >
 	insert into member values (#{userId}, #{userPwd}, #{userName}, #{gender}, #{age}, #{phone}, #{email}, #{hobby}, #{etc}, sysdate, sysdate)
 	</insert>
 

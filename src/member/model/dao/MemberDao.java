@@ -8,7 +8,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
+
+import javax.annotation.Resource;
 
 import member.model.vo.Member;
 import myBatis.*;
@@ -28,7 +31,7 @@ public class MemberDao {
 			
 /*마이 바티스 컨피스 설정파일 읽어서  db에 연결하고 statement객체생성과 동일한의미를 가진 코드*/
 session=new SqlSessionFactoryBuilder().build(
-		Resources.getResourceAsStream("myBatis/mybatis-config.xml")).openSession(false);
+Resources.getResourceAsStream("myBatis/mybatis-config.xml")).openSession(false);
 //메퍼 파일안에 작성된 쿼리 문을 실행시키고, 결과를 받음
 	m=session.selectOne("member.loginMember",member);
 		}catch (Exception e) {
@@ -38,8 +41,80 @@ session=new SqlSessionFactoryBuilder().build(
 		}
 	return m;
 	}
+public int insertMember(Member member) {
+	int result=0;
+	SqlSession session=null;
+	try {
+	session=new SqlSessionFactoryBuilder().build(Resources.getResourceAsStream("myBatis/mybatis-config.xml")).openSession(false);
+	result=session.selectOne("member.insertMember",member);
+	} catch (Exception e) {
+	e.printStackTrace();
+	}finally {
+		session.close();
+	}
+
 	
+	return result;
+
+}
+public int updateMember(Member member) {
+	int result=0;
+	SqlSession session=null;
+	try {
+		session=new SqlSessionFactoryBuilder().build(Resources.getResourceAsStream("myBatis/mybatis-config.xml")).openSession(false);
+		result=session.selectOne("member.updateMember",member);
+	} catch (Exception e) {
+		e.printStackTrace();
+	}finally {
+		session.close();
+	}
 	
+	return result;
+}
+public int deleteMember(Member member) {
+	int result=0;
+	SqlSession session=null;
+	try {
+		session=new SqlSessionFactoryBuilder().build(Resources.getResourceAsStream("myBatis/mybatis-config.xml")).openSession(false);
+		result=session.selectOne("member.deleteMember",member);
+	} catch (Exception e) {
+		e.printStackTrace();
+	}finally {
+		session.close();
+	}
+	
+	return result;
+}
+public ArrayList<Member> selectList() {
+	int result=0;
+	List<Member> al=new ArrayList<Member>();
+	SqlSession session=null;
+	try {
+		session=new SqlSessionFactoryBuilder().build(Resources.getResourceAsStream("myBatis/mybatis-config.xml")).openSession(false);
+		al=session.selectList("member.selectList");
+	} catch (Exception e) {
+		e.printStackTrace();
+	}finally {
+		session.close();
+	}
+	
+	return (ArrayList<Member>)al;
+}
+public int selectCheckId(Member member) {
+	int result=0;
+	SqlSession session=null;
+	try {
+		session=new SqlSessionFactoryBuilder().build(Resources.getResourceAsStream("myBatis/mybatis-config.xml")).openSession(false);
+		result=session.selectOne("member.selectCheckId",member);
+	} catch (Exception e) {
+		e.printStackTrace();
+	}finally {
+		session.close();
+	}
+	
+	return result;
+}
+}
 	
 	
 //	private Properties prop;
@@ -294,4 +369,4 @@ session=new SqlSessionFactoryBuilder().build(
 	
 	
 	
-}
+
