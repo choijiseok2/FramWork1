@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import member.model.service.MemberService;
+import member.model.vo.Member;
 
 /**
  * Servlet implementation class MemberIdCheckServlet
@@ -32,9 +33,9 @@ public class MemberIdCheckServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 아이디 중복 체크 확인용 컨트롤러
 		String userId = request.getParameter("userid");
-		
-		int result = new MemberService().selectCheckId(userId);
-		
+		Member m=new Member();
+		m.setUserId(request.getParameter("userid"));
+		int result = new MemberService().selectCheckId(m);
 		String returnValue = null;
 		if(result == 0)
 			returnValue = "ok";

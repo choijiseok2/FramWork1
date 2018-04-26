@@ -10,15 +10,12 @@
 		<result property="noticeDate" column="noticeDate" />
 		<result property="noticeWriter" column="noticeWriter" />
 	</resultMap>
-	
-	
 	<resultMap id="selectList" type="Notice">
 	
 	<id property="noticeNo" column="noticeNo" />
 		<result property="noticeTitle" column="noticeTitle" />
 		<result property="noticeDate" column="noticeDate" />
 		<result property="noticeWriter" column="noticeWriter" />
-		
 		<result property="originalFilePath" column="originalFilePath" />
 		<result property="renameFilePath" column="renameFilePath" />
 		<result property="noticeContent" column="noticeContent" />

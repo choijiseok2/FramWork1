@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
 import member.model.service.MemberService;
+import member.model.vo.Member;
 
 /**
  * Servlet implementation class MemberDeleteServlet
@@ -30,8 +31,9 @@ public class MemberDeleteServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//회원 탈퇴 처리용 컨트롤러
 		String userId = request.getParameter("userid");
-		
-		int result = new MemberService().deleteMember(userId);
+		Member m=new Member();
+		m.setUserId(request.getParameter("userid"));
+		int result = new MemberService().deleteMember(m);
 		
 		response.setContentType("text/html; charset=utf-8");
 		if(result > 0) {			

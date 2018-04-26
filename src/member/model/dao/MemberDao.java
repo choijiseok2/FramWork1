@@ -2,6 +2,7 @@ package member.model.dao;
 
 import static common.JDBCTemplate.close;
 
+
 import java.io.FileReader;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -23,6 +24,7 @@ public class MemberDao {
 	public MemberDao() {
 		// TODO Auto-generated constructor stub
 	}
+
 	//로그인 확인 처리용.
 	public Member selectMember(Member member) {
 		Member m= null;
@@ -33,7 +35,7 @@ public class MemberDao {
 session=new SqlSessionFactoryBuilder().build(
 Resources.getResourceAsStream("myBatis/mybatis-config.xml")).openSession(false);
 //메퍼 파일안에 작성된 쿼리 문을 실행시키고, 결과를 받음
-	m=session.selectOne("member.loginMember",member);
+	m=session.selectOne("member.selectMember",member);
 		}catch (Exception e) {
 			e.printStackTrace();
 		}finally {
@@ -41,6 +43,8 @@ Resources.getResourceAsStream("myBatis/mybatis-config.xml")).openSession(false);
 		}
 	return m;
 	}
+	
+	
 public int insertMember(Member member) {
 	int result=0;
 	SqlSession session=null;
@@ -113,6 +117,20 @@ public int selectCheckId(Member member) {
 	}
 	
 	return result;
+}
+public Member loginCheck(Member member) {
+	Member m=new Member();
+	SqlSession session=null;
+	try {
+		session=new SqlSessionFactoryBuilder().build(Resources.getResourceAsStream("myBatis/mybatis-config.xml")).openSession(false);
+		m=session.selectOne("member.loginMember",member);
+	} catch (Exception e) {
+		e.printStackTrace();
+	}finally {
+		
+	}
+	
+	return m;
 }
 }
 	

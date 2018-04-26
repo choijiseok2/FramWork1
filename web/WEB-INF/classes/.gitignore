@@ -1,4 +1,10 @@
-/myBatis/
-/member/
-/notice/
 /board/
+/common/
+/dbresource/
+/filter/
+/listener/
+/member/
+/myBatis/
+/notice/
+/test/
+/wrapper/

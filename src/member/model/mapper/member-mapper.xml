@@ -5,7 +5,7 @@
 <mapper namespace="member">
 
 	<resultMap id="resultMember" type="Member">
-	<id property="userId" column="userId" />
+		<id property="userId" column="userId" />
 		<result property="userPwd" column="userPwd" />
 		<result property="userName" column="userName" />
 		<result property="gender" column="gender" />
@@ -38,12 +38,11 @@
 			and userpwd = #{userPwd}
 	</select>
 	
-
-
 	<delete id="deleteMember" parameterType="String">
 	delete from member where userid = #{userId}
 	</delete>
-	<select id="selectMember">select * from member where userid = #{userId}</select>
+	
+	<select id="selectMember" parameterType="Member" resultMap="resultMember">select * from member where userid = #{userId}</select>
 	<select id="selectList">select * from member</select>
 	<select id="selectCheckId">select count(userid) from member where userid = #{userId}</select>
 	

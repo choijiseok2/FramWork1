@@ -32,8 +32,13 @@ public class MemberDetailServlet extends HttpServlet {
 		//회원 정보 상세 보기 게리롱푸리롱
 		
 		String userId = request.getParameter("userid");
-		Member member = new MemberService().selectMember(userId);
+		Member m=new Member();
+		m.setUserId(request.getParameter("userid"));
+		Member member = new MemberService().selectMember(m);
+		
+		
 		response.setContentType("text/html; charset=utf-8");
+		
 		RequestDispatcher view = null;
 		if(member != null) {
 			view = request.getRequestDispatcher("views/member/MemberDetailView.jsp");
