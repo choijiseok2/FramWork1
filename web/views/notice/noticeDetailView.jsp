@@ -3,7 +3,10 @@
 <%@ page import = "notice.model.vo.Notice, member.model.vo.Member" %>
 <% 
 	Notice notice = (Notice)request.getAttribute("notice");
-	Member loginUser = (Member)session.getAttribute("loginUser");
+Member loginUser=null;
+if(session.getAttribute("loginUser")!=null);
+loginUser = (Member)session.getAttribute("loginUser");
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -57,14 +60,15 @@
 		</tr>
 		<tr>
 			<th colspan = "2">
+			<%if (loginUser!=null){ %>
 			<% if(loginUser.getUserId().equals(notice.getNoticeWriter())) { %>
 				<button onclick = "movePage();">수정페이지로 이동</button> &nbsp;		
 				<button onclick = "deleteNotice();">글 삭제</button> &nbsp;
-			<% } %>
+			<% }} %>
 				<button onclick = "history.go(-1); return false;">이전 페이지로 이동</button>				
 			</th>
 		</tr>
-	</table>
+	</table> 
 
 <hr>
 <%@ include file="../../footer.html" %>

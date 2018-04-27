@@ -19,11 +19,9 @@
 		<result property="originalFilePath" column="originalFilePath" />
 		<result property="renameFilePath" column="renameFilePath" />
 		<result property="noticeContent" column="noticeContent" />
-		
-		
-	</resultMap>
+</resultMap>
 
-	<select id="selectTop3List" parameterType="int" resultMap="selectTop3List">
+	<select id="selectTop3List" resultMap="selectTop3List">
 	<![CDATA[
 		SELECT * from (select rownum rnum, noticeno, noticetitle, noticewriter, noticedate from (select * from notice order by noticedate desc)) where rnum >= 1 and rnum <= 3
 	]]>
@@ -34,15 +32,15 @@ select * from notice order by noticeNo desc
 </select>
 
 
-<select id="selectNotice" resultType="Notice">
+<select id="selectNotice" resultType="Notice" parameterType="int">
 select * from notice where noticeno = #{noticeNo}
 </select>
 
-<insert id="insertNotice" >
+<insert id="insertNotice" parameterType="Notice">
 insert into notice values ( select max(noticeno) from notice) + 1, #{noticeTitle}, default, #{noticeContent}, #{noticeWriter}, #{originalFilePath}, #{renameFilePath})
 </insert>
 
-<update id="updateNotice">
+<update id="updateNotice" parameterType="Notice">
 	if(originalFilePath != null) {
 		update notice set noticetitle = #{noticeTitle},
 			noticecontent = #{noticeContent},
@@ -56,7 +54,7 @@ insert into notice values ( select max(noticeno) from notice) + 1, #{noticeTitle
 		}
 </update>
 
-<delete id="deleteNotice">
+<delete id="deleteNotice" parameterType="int">
 delete from notice where noticeno = #{noticeNo}
 </delete>
 

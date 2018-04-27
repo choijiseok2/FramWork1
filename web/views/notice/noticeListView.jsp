@@ -25,7 +25,7 @@
 <br>
 <h2 align="center">공지글 전체 목록</h2>
 
-<% if(loginUser.getUserId().equals("aaaa")) { %>
+<% if(loginUser != null) { %>
 	<button id = "writeBtn" onclick="moveWritePage();">글쓰기</button>
 <% } else { %>
 	<button disabled>글쓰기</button>
@@ -42,12 +42,10 @@
 		<tr>
 			<td align = "center"><%= n.getNoticeNo() %></td>
 			<td align = "center">
-			<% if(loginUser != null) { //로그인 된 경우 상세보기 연결%>
+			
 			<a href = "/first/ndetail?no=<%= n.getNoticeNo() %>" style = "text-decoration : hand"
 			><%= n.getNoticeTitle() %></a>			
-			<% } else { //로그인 되지 않은 상태라면 제목만 보여줌.%>
-				<%= n.getNoticeTitle() %>
-			<% } %>
+			
 			</td>
 			<td align = "center"><%= n.getNoticeWriter() %></td>
 			<td align = "center"><%= n.getNoticeDate() %></td>

@@ -21,15 +21,7 @@
 			
 			
 		</environment>
-
-
 	</environments>
-	
-	
-	
-	
-	
-	
 	<mappers>
 		<mapper resource="member/model/mapper/member-mapper.xml" />
 		<mapper resource="board/model/mapper/board-mapper.xml" />

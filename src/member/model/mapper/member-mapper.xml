@@ -32,27 +32,43 @@
 		<result property="lastModified" column="lastModified" />
 	</resultMap>
 	
+	<update id="updateMember" parameterType="Member" flushCache="true" statementType="PREPARED">
+	 Update MEMBER set 
+	 userpwd = #{userPwd}, 
+	 age = #{age}, 
+	 phone = #{phone}, 
+	 email = #{email}, 
+	 hobby = #{hobby}, 
+	 etc = #{etc},
+	 lastmodified = default	 
+	 where 
+	 userid = #{userId}
+	</update>
+	
 	<select id="loginMember" resultMap="resultMember" parameterType="Member">
 		select * from member 
-			where userid= #{userId} 
-			and userpwd = #{userPwd}
+		
+		where userid= #{userId} 
+		
+		and userpwd = #{userPwd}
+		
 	</select>
 	
 	<delete id="deleteMember" parameterType="String">
 	delete from member where userid = #{userId}
 	</delete>
 	
-	<select id="selectMember" parameterType="Member" resultMap="resultMember">select * from member where userid = #{userId}</select>
+	<select id="selectMember" parameterType="Member" resultMap="resultMember">
+	select * from member where userid = #{userId}
+	</select>
+	
 	<select id="selectList">select * from member</select>
 	<select id="selectCheckId">select count(userid) from member where userid = #{userId}</select>
 	
-	<insert id="insertMember" >
+	<insert id="insertMember" parameterType="Member">
 	insert into member values (#{userId}, #{userPwd}, #{userName}, #{gender}, #{age}, #{phone}, #{email}, #{hobby}, #{etc}, sysdate, sysdate)
 	</insert>
 
-	<update id="updateMember">
-	update member set userpwd = #{userPwd}, age = #{age}, phone = #{phone}, email = #{email} hobby = #{hobby}, etc = #{etc}, lastmodified = sysdate where userid = #{userId}
 	
-	</update>
 
 </mapper>

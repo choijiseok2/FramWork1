@@ -31,8 +31,11 @@ public class MemberService {
 		return new MemberDao().insertMember(member);		
 	}
 	public int updateMember(Member member) {
-		return new MemberDao().updateMember(member);		
+	
+		return new MemberDao().updateMember(member);	
+
 	}
+	
 	public int deleteMember(Member member) {
 		return new MemberDao().deleteMember(member);
 	}

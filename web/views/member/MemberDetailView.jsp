@@ -72,7 +72,7 @@ $(function(){
 					value="<%= member.getUserId() %>" readonly>	
 		 --%>			
 					
-					<input type="text" name="userid" value="${member.userId} " readonly>
+					<input type="text" name="userid" value="${member.userId}" readonly>
 					
 					
 					

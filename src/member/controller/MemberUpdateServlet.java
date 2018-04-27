@@ -33,16 +33,20 @@ public class MemberUpdateServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//회원 정보 수정 처리용 컨트롤러
 		//1. 전송온 값에 한글이 있을 경우 인코딩함
-		//request.setCharacterEncoding("utf-8");
-		
+		request.setCharacterEncoding("utf-8");
+	
 		//2. 전송온 값 꺼내서 변수 또는 객체에 저장하기
 		Member member = new Member();
-		member.setUserId(request.getParameter("userid"));
+		
+		member.setUserId(request.getParameter("userid").trim());
+		
 		member.setUserPwd(request.getParameter("userpwd"));
 		member.setAge(Integer.parseInt(request.getParameter("age")));
 		member.setEmail(request.getParameter("email"));
 		member.setPhone(request.getParameter("phone"));
 		member.setEtc(request.getParameter("etc"));
+		member.setGender(request.getParameter("gender"));
+		member.setUserName(request.getParameter("username"));
 		//취미
 		String[] hobbies = request.getParameterValues("hobby");
 		List<String> hobbyList = new ArrayList<String>();
@@ -52,8 +56,9 @@ public class MemberUpdateServlet extends HttpServlet {
 		member.setHobby(String.join(",", hobbyList));
 		
 		//3. 서비스 클래스 메소드로 전달하고 결과받기
+	
 		int result = new MemberService().updateMember(member);
-		
+		System.out.println("result="+result);
 		//4. 받은 결과를 가지고 성공/실패 뷰를 내보냄
 		response.setContentType("text/html; charset=utf-8");
 		if(result > 0) {

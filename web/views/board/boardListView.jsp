@@ -24,7 +24,7 @@
 	<button onclick="showWriteForm();">글쓰기</button>
 	</div>
 </c:if>
-
+${SessionScope.loginUser }
 <br>
 <table align="center" border="1" cellspacing="0" width="700">
 <tr><th>번호</th><th>제목</th><th>작성자</th><th>날짜</th>
@@ -37,6 +37,7 @@
 <td>
 <!-- 댓글일때는 제목을 들여쓰기함 -->
 
+
 <c:if test="${li.boardLevel == 1}">
 &nbsp; &nbsp; ▶
 </c:if>
@@ -46,12 +47,13 @@
 
 <!-- 로그인한 상태일 때만 상세보기 링크 처리함 -->
 
-<c:if test="${!empty SessionScope.loginUser}">
-	<a href="/first/bdetail?bnum=${li.boardNum}&page=${ currentPage}%>">
+<c:if test="${!empty loginUser}">
+	<a href="/first/bdetail?bnum=${li.boardNum}&page=${currentPage}" >
 	${li.boardTitle}
+	</a>
 </c:if>
 
-<c:if test="${empty SessionScope.loginUser}">
+<c:if test="${empty loginUser}">
 	${li.boardTitle}
 </c:if>
 

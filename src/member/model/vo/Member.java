@@ -64,86 +64,153 @@ public class Member implements java.io.Serializable {
 		this.etc = etc;
 		
 	}
-	
+
+
+
 	public String getUserId() {
 		return userId;
 	}
+
+
+
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
+
+
+
 	public String getUserPwd() {
 		return userPwd;
 	}
+
+
+
 	public void setUserPwd(String userPwd) {
 		this.userPwd = userPwd;
 	}
+
+
+
 	public String getUserName() {
 		return userName;
 	}
+
+
+
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
+
+
+
 	public String getGender() {
 		return gender;
 	}
+
+
+
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
+
+
+
 	public int getAge() {
 		return age;
 	}
+
+
+
 	public void setAge(int age) {
 		this.age = age;
 	}
+
+
+
 	public String getPhone() {
 		return phone;
 	}
+
+
+
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+
+
+
 	public String getEmail() {
 		return email;
 	}
+
+
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+
+
 	public String getHobby() {
 		return hobby;
 	}
+
+
+
 	public void setHobby(String hobby) {
 		this.hobby = hobby;
 	}
+
+
+
 	public String getEtc() {
 		return etc;
 	}
+
+
+
 	public void setEtc(String etc) {
 		this.etc = etc;
 	}
+
+
+
 	public Date getEnroll() {
 		return enroll;
 	}
+
+
+
 	public void setEnroll(Date enroll) {
 		this.enroll = enroll;
 	}
+
+
+
 	public Date getLastModified() {
 		return lastModified;
 	}
+
+
+
 	public void setLastModified(Date lastModified) {
 		this.lastModified = lastModified;
 	}
+
+
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
+
+
+
 	@Override
 	public String toString() {
-		
-		return this.userId + "," + this.userPwd + "," + 
-				this.userName + "," + this.gender + "," + 
-				this.age + "," + this.email + "," + 
-				this.phone + "," + this.hobby + "," + 
-				this.etc + "," + this.enroll + "," + 
-				this.lastModified;
-		
-			}	
+		return "Member [userId=" + userId + ", userPwd=" + userPwd + ", userName=" + userName + ", gender=" + gender
+				+ ", age=" + age + ", phone=" + phone + ", email=" + email + ", hobby=" + hobby + ", etc=" + etc
+				+ ", enroll=" + enroll + ", lastModified=" + lastModified + "]";
+	}
+	
+
 }

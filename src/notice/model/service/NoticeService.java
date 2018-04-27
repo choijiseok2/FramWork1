@@ -14,64 +14,37 @@ public class NoticeService {
 	public NoticeService() {}
 	
 	public List<Notice> selectTop3List() {
-		Connection con = getConnection();
-		List<Notice> list = new NoticeDao().selectTop3List(con);
-		close(con);		
-		return list;
+		return new NoticeDao().selectTop3List();
 	}
 
+	
 	public List<Notice> selectList() {
-		Connection con = getConnection();
-		List<Notice> list = new NoticeDao().selectList(con);
-		close(con);
 		
-		return list;
+		
+		return new NoticeDao().selectList();
 	}
 	
 	public Notice selectNotice(int noticeNo) {
-		Connection con = getConnection();
-		Notice notice = new NoticeDao().selectNotice(con, noticeNo);
-		close(con);
 				
-		return notice;
+		return  new NoticeDao().selectNotice(noticeNo);
 	}
 	
 	public int insertNotice(Notice notice) {
-		Connection con = getConnection();
-		int result = new NoticeDao().insertNotice(con, notice);
-		if(result > 0) {
-			commit(con);
-		} else {
-			rollback(con);
-		}
-		
-		return result;
+	
+		return  new NoticeDao().insertNotice(notice);
 	}
 	
 	public int updateNotice(Notice notice) {
 		
-		Connection con = getConnection();
-		int result = new NoticeDao().updateNotice(con, notice);
-		if(result > 0) {
-			commit(con);
-		} else {
-			rollback(con);
-		}
-		
-		return result;
+
+		return new NoticeDao().updateNotice(notice);
 	}
 
 	public int deleteNotice(int noticeNo) {
 	
-		Connection con = getConnection();
-		int result = new NoticeDao().deleteNotice(con, noticeNo);
-		if(result > 0) {
-			commit(con);
-		} else {
-			rollback(con);
-		}
+
 		
-		return result;
+		return new NoticeDao().deleteNotice(noticeNo);
 	}
 	
 	public List<Notice> selectSearchTitle(String keyword) {

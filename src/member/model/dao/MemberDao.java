@@ -30,7 +30,6 @@ public class MemberDao {
 		Member m= null;
 		SqlSession session=null;
 		try {
-			
 /*마이 바티스 컨피스 설정파일 읽어서  db에 연결하고 statement객체생성과 동일한의미를 가진 코드*/
 session=new SqlSessionFactoryBuilder().build(
 Resources.getResourceAsStream("myBatis/mybatis-config.xml")).openSession(false);
@@ -50,31 +49,47 @@ public int insertMember(Member member) {
 	SqlSession session=null;
 	try {
 	session=new SqlSessionFactoryBuilder().build(Resources.getResourceAsStream("myBatis/mybatis-config.xml")).openSession(false);
-	result=session.selectOne("member.insertMember",member);
+	result=session.insert("member.insertMember",member);
 	} catch (Exception e) {
 	e.printStackTrace();
 	}finally {
 		session.close();
 	}
 
-	
+	System.out.println("result:"+result);
 	return result;
 
 }
+
 public int updateMember(Member member) {
-	int result=0;
-	SqlSession session=null;
-	try {
-		session=new SqlSessionFactoryBuilder().build(Resources.getResourceAsStream("myBatis/mybatis-config.xml")).openSession(false);
-		result=session.selectOne("member.updateMember",member);
-	} catch (Exception e) {
-		e.printStackTrace();
-	}finally {
-		session.close();
-	}
-	
-	return result;
-}
+    int result = 0;
+    SqlSession session = null;
+   try {
+       /* MyBatis config 설정파일의 내용을 읽어서
+        * DB 연결하고, statement 객체 생성과 동일한
+        * 의미를 가진 코드를 작성함 
+        */
+       session = new SqlSessionFactoryBuilder().build(
+        Resources.getResourceAsStream("myBatis/mybatis-config.xml")).openSession(false); //autocommit -> false 의미
+       //mapper 파일 안에 작성된 쿼리문을 실행시키고 결과받음
+     	System.out.println(member.toString());
+       result = session.update("member.updateMember", member);
+       System.out.println("result="+result);
+       if(result > 0) {
+    	   System.out.println("커밋");
+          session.commit();
+       }else {
+    	   System.out.println("롤백");
+          session.rollback();
+       }
+    }catch(Exception e) {
+       e.printStackTrace();
+    }finally {
+       session.close();
+    }
+    return result;
+ }
+
 public int deleteMember(Member member) {
 	int result=0;
 	SqlSession session=null;
